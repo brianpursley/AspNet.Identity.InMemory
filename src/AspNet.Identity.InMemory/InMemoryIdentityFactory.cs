@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 
 namespace AspNet.Identity.InMemory
 {
-    public class InMemoryIdentifyFactory<TUser, TRole> 
+    public class InMemoryIdentityFactory<TUser, TRole> 
         where TUser : class, IIdentityUser, new() 
         where TRole : class, IIdentityRole, new()
     {
         private readonly UserManager<TUser> _userManager;
         private readonly RoleManager<TRole> _roleManager;
 
-        public InMemoryIdentifyFactory(UserManager<TUser> userManager, RoleManager<TRole> roleManager)
+        public InMemoryIdentityFactory(UserManager<TUser> userManager, RoleManager<TRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
