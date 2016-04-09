@@ -3,7 +3,7 @@ This is an ASP.NET identity provider using only memory as storage.
 
 It is a replacement for the default Entity Framework identity provider when you just need something simpler for a demo or quick prototype.
 
-# Usage
+## Usage
 
 In Startup.cs, in the `ConfigureServices()` function, just change `.AddEntityFrameWorkStores()` to `.AddInMemoryStores()`, like this:
 
@@ -24,9 +24,9 @@ Then, just make sure the user class class implements `AspNet.Identity.InMemory.I
 
 You can use `AspNet.Identity.InMemory.IdentityUser` and `AspNet.Identity.InMemory.IdentityRole` if you want or create your own, as long as they implement the `IIdentityUser` and `IIdentityRole` interfaces or inherit from `IdentityUser` and `IdentityRole`.
 
-# Advanced Usage (Creating default users and roles)
+## Advanced Usage (Creating default users and roles)
 
-If you want to pre-populate the user and role stores with users and roles, you can do that using `InMemoryIdentifyFactory`.
+If you want to pre-populate the user and role stores with users and roles, you can do that using `InMemoryIdentityFactory`.
 
 First, register the service in `ConfigureServices()`:
 
@@ -35,7 +35,7 @@ First, register the service in `ConfigureServices()`:
     {
         ...
 
-        services.AddTransient<InMemoryIdentifyFactory<ApplicationUser, IdentityRole>>();
+        services.AddTransient<InMemoryIdentiyFactory<ApplicationUser, IdentityRole>>();
     }
 ```
 
@@ -48,7 +48,7 @@ And then inject it into `Configure()` and use it in there to create users and ro
             IApplicationBuilder app, 
             IHostingEnvironment env, 
             ILoggerFactory loggerFactory, 
-            InMemoryIdentifyFactory<ApplicationUser, IdentityRole> identityFactory)
+            InMemoryIdentiyFactory<ApplicationUser, IdentityRole> identityFactory)
         {
             ...
 
