@@ -14,6 +14,7 @@ namespace AspNet.Identity.InMemory
         where TRole : class, IIdentityRole
     {
         private readonly static IList<TRole> _roles = new List<TRole>();
+        private readonly static ClaimEqualityComparer _claimEqualityComparer = new ClaimEqualityComparer();
 
         #region IQueryableRoleStore
 
@@ -42,7 +43,7 @@ namespace AspNet.Identity.InMemory
 
         public Task RemoveClaimAsync(TRole role, Claim claim, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var existingClaim = role.Claims.SingleOrDefault(x => x == claim);
+            var existingClaim = role.Claims.SingleOrDefault(x => _claimEqualityComparer.Equals(x, claim));
             if (existingClaim != null)
             {
                 role.Claims.Remove(existingClaim);
@@ -146,5 +147,10 @@ namespace AspNet.Identity.InMemory
         }
 
         #endregion
+
+        public void Clear()
+        {
+            _roles.Clear();
+        }
     }
 }

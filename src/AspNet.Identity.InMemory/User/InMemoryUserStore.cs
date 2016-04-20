@@ -23,6 +23,7 @@ namespace AspNet.Identity.InMemory
         where TUser : class, IIdentityUser
     {
         private readonly static IList<TUser> _users = new List<TUser>();
+        private readonly static ClaimEqualityComparer _claimEqualityComparer = new ClaimEqualityComparer();
 
         #region IQueryableUserStore
 
@@ -68,7 +69,7 @@ namespace AspNet.Identity.InMemory
 
         private Task RemoveClaimAsync(TUser user, Claim claim, CancellationToken cancellationToken)
         {
-            var existingClaim = user.Claims.SingleOrDefault(x => x == claim);
+            var existingClaim = user.Claims.SingleOrDefault(x => _claimEqualityComparer.Equals(x, claim));
             if (existingClaim != null)
             {
                 user.Claims.Remove(existingClaim);
@@ -86,7 +87,7 @@ namespace AspNet.Identity.InMemory
 
         public Task<IList<TUser>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_users.Where(x => x.Claims.Contains(claim)).ToList() as IList<TUser>);
+            return Task.FromResult(_users.Where(x => x.Claims.Contains(claim, _claimEqualityComparer)).ToList() as IList<TUser>);
         }
 
         #endregion
@@ -410,5 +411,10 @@ namespace AspNet.Identity.InMemory
         }
 
         #endregion
+
+        public void Clear()
+        {
+            _users.Clear();
+        }
     }
 }
