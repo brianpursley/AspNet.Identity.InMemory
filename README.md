@@ -38,7 +38,7 @@ First, register the service in `ConfigureServices()`:
     {
         ...
 
-        services.AddTransient<InMemoryIdentiyFactory<ApplicationUser, IdentityRole>>();
+        services.AddTransient<InMemoryIdentityFactory<ApplicationUser, IdentityRole>>();
     }
 ```
 
@@ -51,7 +51,7 @@ And then inject it into `Configure()` and use it in there to create users and ro
             IApplicationBuilder app, 
             IHostingEnvironment env, 
             ILoggerFactory loggerFactory, 
-            InMemoryIdentiyFactory<ApplicationUser, IdentityRole> identityFactory)
+            InMemoryIdentityFactory<ApplicationUser, IdentityRole> identityFactory)
         {
             ...
 
