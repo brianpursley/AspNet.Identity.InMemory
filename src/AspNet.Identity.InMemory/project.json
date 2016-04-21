@@ -1,5 +1,5 @@
 ﻿{
-  "version": "3.0.0-rc1-final",
+  "version": "3.0.0-rc1-final-2",
   "description": "ASP.NET identity provider using only memory as storage",
   "authors": [ "Brian Pursley" ],
   "projectUrl": "https://github.com/brianpursley/AspNet.Identity.InMemory",
