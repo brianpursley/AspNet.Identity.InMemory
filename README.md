@@ -5,9 +5,12 @@ It is a replacement for the default Entity Framework identity provider when you 
 
 ## Usage
 
-In Startup.cs, in the `ConfigureServices()` function, just change `.AddEntityFrameWorkStores()` to `.AddInMemoryStores()`, like this:
+In Startup.cs, bring in the `AspNet.Identity.InMemory` namespace and in the `ConfigureServices()` function, just change `.AddEntityFrameWorkStores()` to `.AddInMemoryStores()`, like this:
 
 ```
+    using AspNet.Identity.InMemory;
+    ...
+
     public void ConfigureServices(IServiceCollection services)
     {
         ...
