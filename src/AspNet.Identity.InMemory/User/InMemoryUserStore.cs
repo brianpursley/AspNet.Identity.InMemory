@@ -150,7 +150,7 @@ namespace AspNet.Identity.InMemory
         public Task<int> IncrementAccessFailedCountAsync(TUser user, CancellationToken cancellationToken)
         {
             user.AccessFailedCount++;
-            return Task.FromResult(0);
+            return Task.FromResult(user.AccessFailedCount);
         }
 
         public Task ResetAccessFailedCountAsync(TUser user, CancellationToken cancellationToken)
