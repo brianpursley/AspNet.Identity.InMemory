@@ -7,7 +7,7 @@ It is a replacement for the default Entity Framework identity provider when you 
 
 In Startup.cs, bring in the `AspNet.Identity.InMemory` namespace and in the `ConfigureServices()` function, just change `.AddEntityFrameWorkStores()` to `.AddInMemoryStores()`, like this:
 
-```
+```c#
     using AspNet.Identity.InMemory;
     ...
 
@@ -33,7 +33,7 @@ If you want to pre-populate the user and role stores with users and roles, you c
 
 First, register the service in `ConfigureServices()`:
 
-```
+```c#
     public void ConfigureServices(IServiceCollection services)
     {
         ...
@@ -44,8 +44,7 @@ First, register the service in `ConfigureServices()`:
 
 And then inject it into `Configure()` and use it in there to create users and roles:
 
-```
-
+```c#
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app, 
